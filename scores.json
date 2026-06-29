@@ -1,0 +1,372 @@
+{
+  "m001": {
+    "homeScore": 2,
+    "awayScore": 0,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m002": {
+    "homeScore": 2,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m003": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m004": {
+    "homeScore": 4,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m005": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m006": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m007": {
+    "homeScore": 0,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m008": {
+    "homeScore": 2,
+    "awayScore": 0,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m009": {
+    "homeScore": 7,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m010": {
+    "homeScore": 2,
+    "awayScore": 2,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m011": {
+    "homeScore": 1,
+    "awayScore": 0,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m012": {
+    "homeScore": 5,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m013": {
+    "homeScore": 0,
+    "awayScore": 0,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m014": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m015": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m016": {
+    "homeScore": 2,
+    "awayScore": 2,
+    "recordedAt": "2026-06-16T12:35:04.436Z"
+  },
+  "m017": {
+    "homeScore": 3,
+    "awayScore": 1,
+    "recordedAt": "2026-06-16T23:29:29.754Z"
+  },
+  "m018": {
+    "homeScore": 1,
+    "awayScore": 4,
+    "recordedAt": "2026-06-17T02:25:35.942Z"
+  },
+  "m019": {
+    "homeScore": 3,
+    "awayScore": 0,
+    "recordedAt": "2026-06-17T04:18:04.393Z"
+  },
+  "m020": {
+    "homeScore": 3,
+    "awayScore": 1,
+    "recordedAt": "2026-06-17T06:10:00.000Z"
+  },
+  "m021": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "recordedAt": "2026-06-17T19:35:02.305Z"
+  },
+  "m022": {
+    "homeScore": 4,
+    "awayScore": 2,
+    "recordedAt": "2026-06-17T23:16:08.086Z"
+  },
+  "m023": {
+    "homeScore": 1,
+    "awayScore": 0,
+    "recordedAt": "2026-06-18T01:55:51.587Z"
+  },
+  "m024": {
+    "homeScore": 1,
+    "awayScore": 3,
+    "recordedAt": "2026-06-18T04:10:45.694Z"
+  },
+  "m025": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "recordedAt": "2026-06-18T18:05:59.183Z"
+  },
+  "m026": {
+    "homeScore": 4,
+    "awayScore": 1,
+    "recordedAt": "2026-06-18T21:05:55.129Z"
+  },
+  "m027": {
+    "homeScore": 6,
+    "awayScore": 0,
+    "recordedAt": "2026-06-19T00:10:56.642Z"
+  },
+  "m028": {
+    "homeScore": 1,
+    "awayScore": 0,
+    "recordedAt": "2026-06-19T03:05:56.371Z"
+  },
+  "m029": {
+    "homeScore": 2,
+    "awayScore": 0,
+    "recordedAt": "2026-06-19T21:10:27.709Z"
+  },
+  "m030": {
+    "homeScore": 0,
+    "awayScore": 1,
+    "recordedAt": "2026-06-20T00:10:24.035Z"
+  },
+  "m031": {
+    "homeScore": 3,
+    "awayScore": 0,
+    "recordedAt": "2026-06-20T02:40:27.416Z"
+  },
+  "m032": {
+    "homeScore": 0,
+    "awayScore": 1,
+    "recordedAt": "2026-06-20T05:15:25.435Z"
+  },
+  "m033": {
+    "homeScore": 5,
+    "awayScore": 1,
+    "recordedAt": "2026-06-20T19:05:24.796Z"
+  },
+  "m034": {
+    "homeScore": 2,
+    "awayScore": 1,
+    "recordedAt": "2026-06-20T22:05:24.863Z"
+  },
+  "m035": {
+    "homeScore": 0,
+    "awayScore": 0,
+    "recordedAt": "2026-06-21T02:05:24.939Z"
+  },
+  "m036": {
+    "homeScore": 0,
+    "awayScore": 4,
+    "recordedAt": "2026-06-21T06:05:37.307Z"
+  },
+  "m037": {
+    "homeScore": 4,
+    "awayScore": 0,
+    "recordedAt": "2026-06-21T20:40:28.121Z"
+  },
+  "m038": {
+    "homeScore": 0,
+    "awayScore": 0,
+    "recordedAt": "2026-06-21T21:10:24.774Z"
+  },
+  "m039": {
+    "homeScore": 2,
+    "awayScore": 2,
+    "recordedAt": "2026-06-22T00:15:23.915Z"
+  },
+  "m040": {
+    "homeScore": 1,
+    "awayScore": 3,
+    "recordedAt": "2026-06-22T03:10:27.009Z"
+  },
+  "m041": {
+    "homeScore": 2,
+    "awayScore": 0,
+    "recordedAt": "2026-06-22T19:10:29.550Z"
+  },
+  "m042": {
+    "homeScore": 3,
+    "awayScore": 0,
+    "recordedAt": "2026-06-23T00:55:24.588Z"
+  },
+  "m043": {
+    "homeScore": 3,
+    "awayScore": 2,
+    "recordedAt": "2026-06-23T02:10:24.450Z"
+  },
+  "m044": {
+    "homeScore": 1,
+    "awayScore": 2,
+    "recordedAt": "2026-06-23T05:10:25.718Z"
+  },
+  "m045": {
+    "homeScore": 5,
+    "awayScore": 0,
+    "recordedAt": "2026-06-23T19:05:29.687Z"
+  },
+  "m046": {
+    "homeScore": 0,
+    "awayScore": 0,
+    "recordedAt": "2026-06-23T22:05:49.395Z"
+  },
+  "m047": {
+    "homeScore": 0,
+    "awayScore": 1,
+    "recordedAt": "2026-06-24T01:00:53.267Z"
+  },
+  "m048": {
+    "homeScore": 1,
+    "awayScore": 0,
+    "recordedAt": "2026-06-24T04:05:51.066Z"
+  },
+  "m049": {
+    "homeScore": 2,
+    "awayScore": 1,
+    "recordedAt": "2026-06-24T21:05:52.587Z"
+  },
+  "m050": {
+    "homeScore": 3,
+    "awayScore": 1,
+    "recordedAt": "2026-06-24T21:05:52.587Z"
+  },
+  "m051": {
+    "homeScore": 4,
+    "awayScore": 2,
+    "recordedAt": "2026-06-25T00:10:51.761Z"
+  },
+  "m052": {
+    "homeScore": 0,
+    "awayScore": 3,
+    "recordedAt": "2026-06-25T00:10:51.761Z"
+  },
+  "m053": {
+    "homeScore": 0,
+    "awayScore": 3,
+    "recordedAt": "2026-06-25T03:05:52.369Z"
+  },
+  "m054": {
+    "homeScore": 1,
+    "awayScore": 0,
+    "recordedAt": "2026-06-25T03:05:52.369Z"
+  },
+  "m055": {
+    "homeScore": 2,
+    "awayScore": 1,
+    "recordedAt": "2026-06-25T22:05:51.693Z"
+  },
+  "m056": {
+    "homeScore": 0,
+    "awayScore": 2,
+    "recordedAt": "2026-06-25T22:05:51.693Z"
+  },
+  "m057": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "recordedAt": "2026-06-26T01:10:51.324Z"
+  },
+  "m058": {
+    "homeScore": 1,
+    "awayScore": 3,
+    "recordedAt": "2026-06-26T01:00:51.521Z"
+  },
+  "m059": {
+    "homeScore": 3,
+    "awayScore": 2,
+    "recordedAt": "2026-06-26T04:10:56.034Z"
+  },
+  "m060": {
+    "homeScore": 0,
+    "awayScore": 0,
+    "recordedAt": "2026-06-26T04:05:53.505Z"
+  },
+  "m061": {
+    "homeScore": 5,
+    "awayScore": 0,
+    "recordedAt": "2026-06-26T21:10:51.985Z"
+  },
+  "m062": {
+    "homeScore": 1,
+    "awayScore": 4,
+    "recordedAt": "2026-06-26T21:05:54.060Z"
+  },
+  "m063": {
+    "homeScore": 0,
+    "awayScore": 1,
+    "recordedAt": "2026-06-27T02:10:52.240Z"
+  },
+  "m064": {
+    "homeScore": 0,
+    "awayScore": 0,
+    "recordedAt": "2026-06-27T02:05:53.663Z"
+  },
+  "m065": {
+    "homeScore": 1,
+    "awayScore": 1,
+    "recordedAt": "2026-06-28T00:55:50.664Z"
+  },
+  "m066": {
+    "homeScore": 1,
+    "awayScore": 5,
+    "recordedAt": "2026-06-27T05:05:54.613Z"
+  },
+  "m067": {
+    "homeScore": 2,
+    "awayScore": 1,
+    "recordedAt": "2026-06-27T23:05:55.583Z"
+  },
+  "m068": {
+    "homeScore": 0,
+    "awayScore": 2,
+    "recordedAt": "2026-06-27T23:00:49.703Z"
+  },
+  "m069": {
+    "homeScore": 0,
+    "awayScore": 0,
+    "recordedAt": "2026-06-28T01:35:50.541Z"
+  },
+  "m070": {
+    "homeScore": 3,
+    "awayScore": 1,
+    "recordedAt": "2026-06-28T01:40:57.570Z"
+  },
+  "m071": {
+    "homeScore": 3,
+    "awayScore": 3,
+    "recordedAt": "2026-06-28T04:05:53.904Z"
+  },
+  "m072": {
+    "homeScore": 1,
+    "awayScore": 3,
+    "recordedAt": "2026-06-28T04:05:53.904Z"
+  },
+  "m073": {
+    "homeScore": 0,
+    "awayScore": 1,
+    "recordedAt": "2026-06-29T03:45:39.386Z"
+  },
+  "m081": {
+    "homeScore": 0,
+    "awayScore": 1,
+    "recordedAt": "2026-06-29T02:02:58.322Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/today/today",
+    "pages/teams/teams",
+    "pages/schedule/schedule",
+    "pages/review/review",
+    "pages/match-detail/match-detail",
+    "pages/team-detail/team-detail",
+    "pages/dashboard/dashboard",
+    "pages/history/history",
+    "pages/group-standings/group-standings"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "CHO的世界杯小站",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#080c14"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2563eb",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/today/today", "text": "📅 赛程" },
+      { "pagePath": "pages/teams/teams", "text": "⭐ 球队" },
+      { "pagePath": "pages/group-standings/group-standings", "text": "🏆 积分榜" },
+      { "pagePath": "pages/schedule/schedule", "text": "📋 赛程表" },
+      { "pagePath": "pages/review/review", "text": "📊 复盘" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

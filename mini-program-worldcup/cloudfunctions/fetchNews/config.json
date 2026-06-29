@@ -1,0 +1,14 @@
+{
+  "env": "cloud1-d1ggmx6ur18b296fc",
+  "timeout": 60,
+  "permissions": {
+    "openapi": []
+  },
+  "triggers": [
+    {
+      "name": "newsTimer",
+      "type": "timer",
+      "config": "0 0,30 * * * * *"
+    }
+  ]
+}

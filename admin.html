@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯数据管理</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#080c14;color:#e4e8f0;padding:20px}
+h1{text-align:center;margin-bottom:6px;color:#f0b90b}
+.info{text-align:center;color:#8899b4;margin-bottom:16px;font-size:13px}
+.toolbar{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
+.toolbar input{padding:8px 12px;border:1px solid #1a2744;background:#0f1521;color:#e4e8f0;border-radius:6px;font-size:14px;flex:1;min-width:180px}
+.btn{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;white-space:nowrap}
+.btn-primary{background:#4da6ff;color:#fff}
+.btn-gold{background:#f0b90b;color:#000}
+.btn-green{background:#00c853;color:#fff}
+.btn-outline{background:transparent;border:1px solid #1a2744;color:#8899b4}
+.tabs{display:flex;gap:2px;margin-bottom:16px}
+.tab{padding:8px 20px;background:#0f1521;border:1px solid #1a2744;color:#8899b4;border-radius:6px 6px 0 0;cursor:pointer;font-weight:600;font-size:14px}
+.tab.active{background:#4da6ff;color:#fff;border-color:#4da6ff}
+table{width:100%;border-collapse:collapse}
+th{background:#0f1521;padding:10px 6px;text-align:left;font-size:12px;border-bottom:2px solid #1a2744;position:sticky;top:0}
+td{padding:6px;border-bottom:1px solid #1a2744;font-size:12px;vertical-align:top}
+tr:hover{background:rgba(77,166,255,.04)}
+input[type="text"],textarea{background:#182032;border:1px solid #1a2744;color:#e4e8f0;padding:5px 6px;border-radius:4px;width:100%;font-size:12px;font-family:inherit}
+textarea{resize:vertical;min-height:22px}
+.lp-row{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.lp-row input{width:100px}
+.lp-row .lp-label{color:#556680;font-size:11px;min-width:20px}
+.flag{font-size:20px;text-align:center}
+.result{background:#0f1521;border:1px solid #1a2744;border-radius:8px;padding:16px;margin-top:20px;display:none}
+.result textarea{width:100%;height:180px;font-family:monospace;font-size:11px;margin:8px 0}
+.tab-content{display:none}
+.tab-content.active{display:block}
+</style>
+</head>
+<body>
+<h1>🏆 世界杯数据管理</h1>
+<p class="info">编辑 → 复制生成的代码 → 替换 data.js 和 index.html 中对应球队行</p>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('injuries')">🏥 伤停/新闻</div>
+  <div class="tab" onclick="switchTab('lineups')">📋 首发阵容</div>
+</div>
+
+<div class="toolbar">
+  <input type="text" id="search" placeholder="🔍 搜索球队..." oninput="render()">
+  <select id="groupFilter" onchange="render()" style="padding:8px;background:#0f1521;border:1px solid #1a2744;color:#e4e8f0;border-radius:6px">
+    <option value="">全部组别</option>
+  </select>
+  <button class="btn btn-primary" onclick="genCode()">📋 生成代码</button>
+  <button class="btn btn-green" onclick="copyAll()">📋 复制</button>
+  <span id="status"></span>
+</div>
+
+<div id="tab-injuries" class="tab-content active">
+  <table><thead><tr>
+    <th style="width:36px"></th><th style="width:90px">球队</th><th style="width:40px">组</th>
+    <th style="width:200px">伤病/停赛 (inj)</th><th style="width:220px">新闻/动态 (news)</th><th style="width:100px">球星</th>
+  </tr></thead><tbody id="tbody-inj"></tbody></table>
+</div>
+
+<div id="tab-lineups" class="tab-content">
+  <table><thead><tr>
+    <th style="width:36px"></th><th style="width:70px">球队</th><th style="width:60px">阵型</th>
+    <th style="width:110px">门将</th><th style="width:260px">后卫</th><th style="width:260px">中场</th>
+    <th style="width:220px">前锋</th><th style="width:180px">替补</th><th style="width:180px">备注</th>
+  </tr></thead><tbody id="tbody-lp"></tbody></table>
+</div>
+
+<div class="result" id="result">
+  <h3>生成的代码</h3>
+  <p style="font-size:12px;color:#8899b4">替换 data.js 和 index.html 中的对应行</p>
+  <textarea id="codeOutput" readonly></textarea>
+  <button class="btn btn-primary" onclick="copyAll()">📋 复制</button>
+  <button class="btn btn-outline" onclick="document.getElementById('result').style.display='none'">关闭</button>
+</div>
+
+<script>
+const TEAMS=[
+{id:"MEX",cn:"墨西哥",flag:"🇲🇽",grp:"A",stars:["Giménez","Lozano","Ochoa"]},
+{id:"RSA",cn:"南非",flag:"🇿🇦",grp:"A",stars:["Tau","Foster","Mokoena"]},
+{id:"KOR",cn:"韩国",flag:"🇰🇷",grp:"A",stars:["Son","Kim Min-jae","Lee Kang-in"]},
+{id:"CZE",cn:"捷克",flag:"🇨🇿",grp:"A",stars:["Schick","Souček","Hložek"]},
+{id:"CAN",cn:"加拿大",flag:"🇨🇦",grp:"B",stars:["Davies","David","Buchanan"]},
+{id:"BIH",cn:"波黑",flag:"🇧🇦",grp:"B",stars:["Džeko","Pjanić","Tahirović"]},
+{id:"QAT",cn:"卡塔尔",flag:"🇶🇦",grp:"B",stars:["Afif","Ali","Al-Haydos"]},
+{id:"SUI",cn:"瑞士",flag:"🇨🇭",grp:"B",stars:["Akanji","Xhaka","Embolo"]},
+{id:"BRA",cn:"巴西",flag:"🇧🇷",grp:"C",stars:["Vinícius Jr","Raphinha","Alisson"]},
+{id:"MAR",cn:"摩洛哥",flag:"🇲🇦",grp:"C",stars:["Hakimi","Brahim Díaz","El Khannouss"]},
+{id:"HAI",cn:"海地",flag:"🇭🇹",grp:"C",stars:["Pierrot","Nazon","Lambese"]},
+{id:"SCO",cn:"苏格兰",flag:"🏴󠁧󠁢󠁳󠁣󠁴󠁿",grp:"C",stars:["Robertson","McGinn","McTominay"]},
+{id:"USA",cn:"美国",flag:"🇺🇸",grp:"D",stars:["Pulisic","McKennie","Reyna"]},
+{id:"PAR",cn:"巴拉圭",flag:"🇵🇾",grp:"D",stars:["Almirón","Enciso","Sosa"]},
+{id:"AUS",cn:"澳大利亚",flag:"🇦🇺",grp:"D",stars:["Souttar","Irankunda","Goodwin"]},
+{id:"TUR",cn:"土耳其",flag:"🇹🇷",grp:"D",stars:["Çalhanoğlu","Güler","Yıldız"]},
+{id:"GER",cn:"德国",flag:"🇩🇪",grp:"E",stars:["Musiala","Wirtz","Kimmich"]},
+{id:"CUW",cn:"库拉索",flag:"🇨🇼",grp:"E",stars:["Bacuna","Janga","Kastaneer"]},
+{id:"CIV",cn:"科特迪瓦",flag:"🇨🇮",grp:"E",stars:["Haller","Adingra","Fofana"]},
+{id:"ECU",cn:"厄瓜多尔",flag:"🇪🇨",grp:"E",stars:["Caicedo","Estupiñán","Páez"]},
+{id:"NED",cn:"荷兰",flag:"🇳🇱",grp:"F",stars:["van Dijk","Gakpo","de Jong"]},
+{id:"JPN",cn:"日本",flag:"🇯🇵",grp:"F",stars:["Kubo","Ueda","Tomiyasu"]},
+{id:"SWE",cn:"瑞典",flag:"🇸🇪",grp:"F",stars:["Isak","Kulusevski","Gyökeres"]},
+{id:"TUN",cn:"突尼斯",flag:"🇹🇳",grp:"F",stars:["Msakni","Talbi","Jaziri"]},
+{id:"BEL",cn:"比利时",flag:"🇧🇪",grp:"G",stars:["De Bruyne","Doku","Trossard"]},
+{id:"EGY",cn:"埃及",flag:"🇪🇬",grp:"G",stars:["Salah","Marmoush","Elneny"]},
+{id:"IRN",cn:"伊朗",flag:"🇮🇷",grp:"G",stars:["Taremi","Jahanbakhsh","Ghoddos"]},
+{id:"NZL",cn:"新西兰",flag:"🇳🇿",grp:"G",stars:["Wood","Cacace","Just"]},
+{id:"ESP",cn:"西班牙",flag:"🇪🇸",grp:"H",stars:["Rodri","Pedri","Yamal"]},
+{id:"CPV",cn:"佛得角",flag:"🇨🇻",grp:"H",stars:["Mendes","Tavares","Bebé"]},
+{id:"KSA",cn:"沙特",flag:"🇸🇦",grp:"H",stars:["Al-Dawsari","Al-Buraikan","Al-Shehri"]},
+{id:"URU",cn:"乌拉圭",flag:"🇺🇾",grp:"H",stars:["Valverde","Núñez","Bentancur"]},
+{id:"FRA",cn:"法国",flag:"🇫🇷",grp:"I",stars:["Mbappé","Dembélé","Olise"]},
+{id:"SEN",cn:"塞内加尔",flag:"🇸🇳",grp:"I",stars:["Mané","Jackson","Koulibaly"]},
+{id:"IRQ",cn:"伊拉克",flag:"🇮🇶",grp:"I",stars:["Ali Al-Hamadi","Hussein Ali","Amyn"]},
+{id:"NOR",cn:"挪威",flag:"🇳🇴",grp:"I",stars:["Haaland","Ødegaard","Sørloth"]},
+{id:"ARG",cn:"阿根廷",flag:"🇦🇷",grp:"J",stars:["Messi","Álvarez","Enzo"]},
+{id:"ALG",cn:"阿尔及利亚",flag:"🇩🇿",grp:"J",stars:["Mahrez","Amoura","Gouiri"]},
+{id:"AUT",cn:"奥地利",flag:"🇦🇹",grp:"J",stars:["Sabitzer","Baumgartner","Seiwald"]},
+{id:"JOR",cn:"约旦",flag:"🇯🇴",grp:"J",stars:["Al-Taamari","Olwan","Al-Naimat"]},
+{id:"POR",cn:"葡萄牙",flag:"🇵🇹",grp:"K",stars:["Ronaldo","B.Fernandes","Leão"]},
+{id:"COD",cn:"民主刚果",flag:"🇨🇩",grp:"K",stars:["Bakambu","Wissa","Kakuta"]},
+{id:"UZB",cn:"乌兹别克",flag:"🇺🇿",grp:"K",stars:["Shomurodov","Masharipov","Fayzullaev"]},
+{id:"COL",cn:"哥伦比亚",flag:"🇨🇴",grp:"K",stars:["Díaz","James","Durán"]},
+{id:"ENG",cn:"英格兰",flag:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",grp:"L",stars:["Kane","Bellingham","Saka"]},
+{id:"CRO",cn:"克罗地亚",flag:"🇭🇷",grp:"L",stars:["Modrić","Gvardiol","Kovačić"]},
+{id:"GHA",cn:"加纳",flag:"🇬🇭",grp:"L",stars:["Kudus","Partey","Williams"]},
+{id:"PAN",cn:"巴拿马",flag:"🇵🇦",grp:"L",stars:["Murillo","Carrasquilla","Waterman"]},
+];
+
+let teamData = {}; // { id: { inj, news, lineup: { f, g, d, m, fwd, subs, note } } }
+
+async function loadData() {
+  try {
+    const resp = await fetch('index.html');
+    const html = await resp.text();
+    TEAMS.forEach(t => {
+      // Extract inj/news
+      const reNJ = new RegExp(`id:"${t.id}"[^}]*news:"([^"]*)",inj:"([^"]*)"`);
+      const mNJ = html.match(reNJ);
+      // Extract lineup
+      const reLP = new RegExp(`${t.id}:\\s*\\{f:'([^']+)',g:'([^']+)',d:\\[([^\\]]+)\\],m:\\[([^\\]]+)\\],fwd:\\[([^\\]]+)\\],subs:'([^']*)',note:'([^']*)'\\}`);
+      const mLP = html.match(reLP);
+      teamData[t.id] = {
+        inj: mNJ ? mNJ[2] : '',
+        news: mNJ ? mNJ[1] : '',
+        lp: mLP ? { f: mLP[1], g: mLP[2], d: mLP[3].replace(/'/g,'').split(','), m: mLP[4].replace(/'/g,'').split(','), fwd: mLP[5].replace(/'/g,'').split(','), subs: mLP[6], note: mLP[7] } : null
+      };
+    });
+  } catch(e) { console.warn(e); }
+  initFilters();
+  render();
+}
+loadData();
+
+function initFilters() {
+  const groups = [...new Set(TEAMS.map(t => t.grp))].sort();
+  document.getElementById('groupFilter').innerHTML = '<option value="">全部组别</option>' + groups.map(g => `<option>${g}</option>`).join('');
+}
+
+function switchTab(t) {
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelector(`.tab:${t==='injuries'?'first':t==='lineups'?'last':''}-child`);
+  document.querySelectorAll('.tab')[t==='injuries'?0:1].classList.add('active');
+  document.getElementById('tab-'+t).classList.add('active');
+  render();
+}
+
+function render() {
+  const search = (document.getElementById('search').value || '').toLowerCase();
+  const grp = document.getElementById('groupFilter').value;
+  const filtered = TEAMS.filter(t => {
+    if (grp && t.grp !== grp) return false;
+    if (!search) return true;
+    return t.cn.includes(search) || t.id.toLowerCase().includes(search) || t.stars.some(s => s.toLowerCase().includes(search));
+  });
+
+  // Injury tab
+  document.getElementById('tbody-inj').innerHTML = filtered.map(t => {
+    const d = teamData[t.id] || { inj:'', news:'' };
+    return `<tr>
+      <td class="flag">${t.flag}</td>
+      <td><b>${t.cn}</b><br><span style="color:#556680;font-size:10px">${t.id}·${t.grp}组</span></td>
+      <td style="color:#f0b90b">${t.grp}</td>
+      <td><input id="inj_${t.id}" value="${esc(d.inj)}" placeholder="伤病/停赛"></td>
+      <td><textarea id="news_${t.id}" rows="2" placeholder="新闻/动态">${esc(d.news)}</textarea></td>
+      <td style="color:#8899b4;font-size:11px">${t.stars.join(' · ')}</td>
+    </tr>`;
+  }).join('');
+
+  // Lineup tab
+  document.getElementById('tbody-lp').innerHTML = filtered.map(t => {
+    const lp = (teamData[t.id] || {}).lp || { f:'?', g:'', d:[], m:[], fwd:[], subs:'', note:'' };
+    return `<tr>
+      <td class="flag">${t.flag}</td>
+      <td><b>${t.cn}</b><br><span style="font-size:10px;color:#556680">${t.id}</span></td>
+      <td><input id="lp_${t.id}_f" value="${lp.f}" style="width:50px"></td>
+      <td><input id="lp_${t.id}_g" value="${lp.g}" style="width:90px"></td>
+      <td><input id="lp_${t.id}_d" value="${(lp.d||[]).join(',')}" style="width:240px"></td>
+      <td><input id="lp_${t.id}_m" value="${(lp.m||[]).join(',')}" style="width:240px"></td>
+      <td><input id="lp_${t.id}_fwd" value="${(lp.fwd||[]).join(',')}" style="width:200px"></td>
+      <td><input id="lp_${t.id}_subs" value="${lp.subs}" style="width:160px"></td>
+      <td><input id="lp_${t.id}_note" value="${esc(lp.note)}" style="width:160px"></td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('status').textContent = `显示 ${filtered.length}/${TEAMS.length} 队`;
+}
+
+function esc(s) { return (s||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+function genCode() {
+  const lines = [];
+  TEAMS.forEach(t => {
+    const inj = document.getElementById('inj_'+t.id)?.value || '';
+    const news = document.getElementById('news_'+t.id)?.value || '';
+    const f = document.getElementById('lp_'+t.id+'_f')?.value || '?';
+    const g = document.getElementById('lp_'+t.id+'_g')?.value || '';
+    const d = document.getElementById('lp_'+t.id+'_d')?.value || '';
+    const m = document.getElementById('lp_'+t.id+'_m')?.value || '';
+    const fwd = document.getElementById('lp_'+t.id+'_fwd')?.value || '';
+    const subs = document.getElementById('lp_'+t.id+'_subs')?.value || '';
+    const note = document.getElementById('lp_'+t.id+'_note')?.value || '';
+    const dArr = d ? d.split(',').map(s => "'"+s.trim()+"'").join(',') : '';
+    const mArr = m ? m.split(',').map(s => "'"+s.trim()+"'").join(',') : '';
+    const fArr = fwd ? fwd.split(',').map(s => "'"+s.trim()+"'").join(',') : '';
+    lines.push(`// ${t.cn} (${t.id}) — news & inj`);
+    lines.push(`{id:"${t.id}",...,news:"${news}",inj:"${inj}"}`);
+    lines.push(`// ${t.cn} (${t.id}) — lineup`);
+    lines.push(`${t.id}: {f:'${f}',g:'${g}',d:[${dArr}],m:[${mArr}],fwd:[${fArr}],subs:'${subs}',note:'${note}'},`);
+    lines.push('');
+  });
+  document.getElementById('codeOutput').value = lines.join('\n');
+  document.getElementById('result').style.display = 'block';
+}
+
+function copyAll() { genCode(); const ta = document.getElementById('codeOutput'); ta.select(); document.execCommand('copy'); alert('已复制！'); }
+</script>
+</body>
+</html>

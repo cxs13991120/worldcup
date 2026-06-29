@@ -1,0 +1,361 @@
+/* Group Standings Page */
+
+.page { padding: 12px; min-height: 100vh; }
+
+/* Group Navigator */
+.group-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.group-nav-arrow {
+  font-size: 28rpx;
+  color: #2563eb;
+  padding: 6px;
+  font-weight: 700;
+}
+
+.group-scroll { flex: 1; }
+
+.group-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.group-tab {
+  padding: 8px 16px;
+  background: #f0f2f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 24rpx;
+  color: #666666;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all .15s;
+}
+
+.group-tab.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+  font-weight: 800;
+}
+
+/* Group Info */
+.group-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 0 4px;
+}
+
+.gi-title {
+  font-size: 36rpx;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.gi-meta {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* Standings Table */
+.standings-table {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+/* Table Header */
+.st-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 6px;
+  background: #f0f2f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.st-header .st-col {
+  color: #999999;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+/* Columns */
+.st-col { text-align: center; }
+.st-pos { width: 36px; flex-shrink: 0; }
+.st-team { flex: 1; text-align: left; }
+.st-stat { width: 40px; flex-shrink: 0; }
+.st-pts { width: 44px; flex-shrink: 0; }
+
+/* Team Rows */
+.st-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 6px;
+  border-bottom: 1px solid rgba(26,39,68,.4);
+  transition: all .15s;
+}
+
+.st-row:last-child { border-bottom: none; }
+.st-row:active { background: #1a2538; }
+
+.st-row.qualify {
+  background: rgba(0,200,83,.04);
+}
+
+.st-row.third {
+  background: rgba(240,185,11,.03);
+}
+
+.st-row .st-col {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.st-row .st-pos {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #999999;
+}
+
+/* Team Info */
+.st-team-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.sti-flag { font-size: 36rpx; }
+
+.sti-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sti-name {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.sti-rank {
+  font-size: 20rpx;
+  color: #999999;
+}
+
+/* Qualification Legend */
+.qual-legend {
+  display: flex;
+  gap: 16px;
+  padding: 6px 4px;
+  margin-bottom: 8px;
+}
+
+.ql-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 22rpx;
+  color: #666666;
+}
+
+.ql-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.ql-item.qualify .ql-dot { background: rgba(0,200,83,.6); }
+.ql-item.third .ql-dot { background: rgba(240,185,11,.6); }
+
+/* Third Place Ranking */
+.tp-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: #f0f2f5;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  font-size: 24rpx;
+}
+
+.tp-row.tp-qualify {
+  border-left: 3px solid #16a34a;
+}
+
+.tp-row.tp-out {
+  opacity: 0.5;
+}
+
+.tp-pos {
+  width: 24px;
+  font-weight: 700;
+  color: #999999;
+}
+
+.tp-group {
+  font-size: 20rpx;
+  background: #ffffff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #666666;
+}
+
+.tp-flag { font-size: 28rpx; }
+
+.tp-name {
+  flex: 1;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.tp-pts {
+  font-weight: 700;
+  color: #f59e0b;
+  min-width: 40px;
+  text-align: center;
+}
+
+.tp-gd {
+  min-width: 40px;
+  text-align: right;
+  color: #666666;
+  font-weight: 600;
+}
+
+/* Group Match Items */
+.group-matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gm-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: #ffffff;
+  border-radius: 6px;
+  font-size: 24rpx;
+}
+
+.gm-date {
+  color: #999999;
+  min-width: 70px;
+  font-size: 22rpx;
+}
+
+.gm-teams {
+  flex: 1;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.gm-score {
+  font-weight: 800;
+  font-size: 26rpx;
+  min-width: 36px;
+  text-align: center;
+}
+
+.gm-pending {
+  font-size: 22rpx;
+  color: #999999;
+  min-width: 36px;
+  text-align: center;
+}
+
+/* Sub-tabs */
+.subtabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.subtab {
+  padding: 10px 24px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  color: #666666;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+.subtab.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+/* Bracket */
+.bracket-scroll {
+  margin-top: 8px;
+}
+.bracket-rounds {
+  display: flex;
+  gap: 14px;
+  padding: 8px 0;
+}
+.bracket-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 200rpx;
+}
+.bracket-round-title {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999999;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.bracket-match {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-height: 64rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.bm-team {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bm-flag {
+  font-size: 28rpx;
+}
+.bm-name {
+  font-size: 24rpx;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+.bm-tbd {
+  font-size: 24rpx;
+  color: #999999;
+  font-style: italic;
+}
+.bm-meta {
+  font-size: 20rpx;
+  color: #cccccc;
+  text-align: center;
+  margin-top: 2px;
+}
+.bracket-note {
+  font-size: 22rpx;
+  color: #999999;
+  text-align: center;
+  margin-top: 12px;
+}

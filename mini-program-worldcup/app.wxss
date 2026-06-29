@@ -1,0 +1,459 @@
+/* CHO的世界杯小站 - Theme Token System */
+/* WXSS doesn't support CSS variables, using utility classes */
+
+/* ===== Background Colors ===== */
+.bg-dark { background-color: #f5f5f5; }
+.bg-surface { background-color: #ffffff; }
+.bg-surface2 { background-color: #f0f2f5; }
+.bg-card { background-color: #ffffff; }
+.bg-accent-subtle { background-color: rgba(77,166,255,.04); }
+
+/* ===== Text Colors ===== */
+.text-primary { color: #1a1a1a; }
+.text-secondary { color: #666666; }
+.text-muted { color: #999999; }
+.text-accent { color: #2563eb; }
+.text-gold { color: #f59e0b; }
+.text-green { color: #16a34a; }
+.text-red { color: #dc2626; }
+.text-orange { color: #ea580c; }
+.text-purple { color: #7c3aed; }
+
+/* ===== Border ===== */
+.border-default { border: 1px solid #e0e0e0; }
+.border-accent { border-color: #2563eb; }
+.border-gold { border-color: #f59e0b; }
+
+/* ===== Radius ===== */
+.radius-sm { border-radius: 8px; }
+.radius { border-radius: 12px; }
+.radius-lg { border-radius: 16px; }
+
+/* ===== Shadows ===== */
+.shadow-card { box-shadow: 0 4px 32px rgba(0,0,0,.4); }
+
+/* ===== Flex Layout ===== */
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
+.gap-sm { gap: 6px; }
+.gap { gap: 10px; }
+.gap-md { gap: 16px; }
+
+/* ===== Typography ===== */
+.font-sm { font-size: 20rpx; }
+.font-xs { font-size: 22rpx; }
+.font-s { font-size: 24rpx; }
+.font-m { font-size: 28rpx; }
+.font-l { font-size: 32rpx; }
+.font-xl { font-size: 36rpx; }
+.font-xxl { font-size: 44rpx; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* ===== Page ===== */
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background-color: #f5f5f5;
+  color: #1a1a1a;
+  line-height: 1.5;
+  font-size: 28rpx;
+}
+
+/* ===== Header ===== */
+.header {
+  background: #ffffff;
+  border-bottom: 2px solid #2563eb;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ===== Card ===== */
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 4px 32px rgba(0,0,0,.4);
+  margin-bottom: 16px;
+}
+
+.card-header {
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* ===== Button ===== */
+.btn {
+  padding: 9px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+.btn-sm {
+  padding: 5px 12px;
+  font-size: 24rpx;
+}
+
+/* ===== Match Card ===== */
+.match-card {
+  background: #f0f2f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.match-card.featured {
+  border-left: 3px solid #f59e0b;
+}
+
+.match-card .mc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.match-card .mc-time {
+  font-size: 24rpx;
+  color: #999999;
+  font-weight: 600;
+}
+
+.match-card .mc-group {
+  font-size: 22rpx;
+  background: #2563eb;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.match-card .mc-teams {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.match-card .mc-team {
+  flex: 1;
+  text-align: center;
+}
+
+.match-card .mc-flag {
+  font-size: 70rpx;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.match-card .mc-name {
+  font-weight: 700;
+  font-size: 30rpx;
+}
+
+.match-card .mc-rank {
+  font-size: 22rpx;
+  color: #666666;
+}
+
+.match-card .mc-vs {
+  font-size: 38rpx;
+  font-weight: 800;
+  color: #999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.match-card .mc-pred-score {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: #f59e0b;
+}
+
+.match-card .mc-probs {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  font-size: 22rpx;
+  margin-top: 8px;
+}
+
+/* ===== Schedule ===== */
+.schedule-day {
+  margin-bottom: 20px;
+}
+
+.schedule-day .sd-header {
+  padding: 10px 14px;
+  background: #f0f2f5;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 28rpx;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.schedule-match {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 3px;
+  font-size: 26rpx;
+}
+
+.schedule-match .sm-time {
+  font-size: 24rpx;
+  color: #999999;
+  min-width: 42px;
+}
+
+.schedule-match .sm-teams {
+  flex: 1;
+}
+
+.schedule-match .sm-group {
+  font-size: 22rpx;
+  background: #f0f2f5;
+  padding: 2px 8px;
+  border-radius: 8px;
+  color: #666666;
+}
+
+.schedule-match .sm-pred {
+  color: #f59e0b;
+  font-weight: 600;
+  font-size: 24rpx;
+  min-width: 40px;
+  text-align: center;
+}
+
+.schedule-match .sm-actual {
+  color: #16a34a;
+  font-weight: 700;
+  font-size: 26rpx;
+  min-width: 40px;
+  text-align: center;
+}
+
+.schedule-match .sm-pending {
+  color: #999999;
+  font-weight: 600;
+  font-size: 24rpx;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* ===== Team Grid ===== */
+.team-card {
+  background: #f0f2f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.team-card .tc-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.team-card .tc-flag {
+  font-size: 60rpx;
+}
+
+.team-card .tc-name {
+  font-weight: 700;
+  font-size: 28rpx;
+}
+
+.team-card .tc-stars {
+  font-size: 22rpx;
+  color: #f59e0b;
+}
+
+.team-card .tc-group {
+  font-size: 22rpx;
+  background: #2563eb;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 8px;
+}
+
+/* ===== Stat Box ===== */
+.stat-box {
+  background: #f0f2f5;
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+}
+
+.stat-box .num {
+  font-size: 54rpx;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.stat-box .num.gold {
+  color: #f59e0b;
+}
+
+.stat-box .lbl {
+  font-size: 24rpx;
+  color: #666666;
+  margin-top: 2px;
+}
+
+/* ===== News Ticker ===== */
+.news-ticker {
+  background: #f0f2f5;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 6px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24rpx;
+  height: 32px;
+}
+
+.news-ticker .ticker-label {
+  background: #dc2626;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 22rpx;
+  white-space: nowrap;
+}
+
+.news-ticker .ticker-content {
+  flex: 1;
+  white-space: nowrap;
+  color: #666666;
+  overflow: hidden;
+  position: relative;
+  height: 20px;
+}
+
+/* ===== Modal/Dialog ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 620px;
+  width: 92%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+  color: #999999;
+}
+
+.empty-state .icon {
+  font-size: 96rpx;
+  margin-bottom: 10px;
+}
+
+/* ===== Progress Bar ===== */
+.progress-wrap {
+  height: 8px;
+  background: #f0f2f5;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  border-radius: 4px;
+  transition: width .3s;
+}
+
+/* ===== Group Tabs ===== */
+.group-tabs {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.group-tab {
+  padding: 5px 12px;
+  border: 1px solid #e0e0e0;
+  background: transparent;
+  color: #666666;
+  border-radius: 20px;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.group-tab.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+/* ===== Scroll Area ===== */
+.scroll-y {
+  overflow-y: auto;
+}
+
+/* ===== Utility ===== */
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

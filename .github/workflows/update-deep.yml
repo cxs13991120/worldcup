@@ -1,0 +1,27 @@
+name: Update Deep Data
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Update deep data
+        run: node update-scores.js --news || true; node update-scores.js --details || true; node update-scores.js --tactical || true; node update-scores.js --injuries || true; node update-scores.js --standings || true; node update-scores.js --players || true; node update-scores.js --odds || true
+        env:
+          FD_TOKEN: ${{ secrets.FD_TOKEN }}
+          GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
+          APISPORTS_KEY: ${{ secrets.APISPORTS_KEY }}
+
+      - name: Commit & push
+        run: |
+          git config user.name 'wc-bot'
+          git config user.email 'bot@worldcup'
+          git add news.json match-details.json injuries.json standings.json players.json
+          git diff --staged --quiet || (git commit -m "📊 deep data $(TZ='Asia/Shanghai' date +%m-%d_%H:%M)" && git push)
