@@ -250,12 +250,64 @@ async function updateScores() {
 async function updateOdds() {
   const now = new Date();
   const ts = now.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
-  if (!APISPORTS_KEY) {
-    console.log(`[${ts}] Odds: skipped (set APISPORTS_KEY)`);
-    return false;
-  }
 
-  // API-Sports odds endpoint (Pro plan includes 1X2 odds for all matches)
+  // Prefer ODDS_API_KEY (the-odds-api.com), fallback to APISPORTS_KEY
+  if (ODDS_API_KEY) {
+    return await updateOddsTheOdds(now, ts);
+  }
+  if (APISPORTS_KEY) {
+    return await updateOddsApiSports(now, ts);
+  }
+  console.log(`[${ts}] Odds: skipped (set ODDS_API_KEY or APISPORTS_KEY)`);
+  return false;
+}
+
+// Odds via the-odds-api.com
+async function updateOddsTheOdds(now, ts) {
+  const existing = loadJSON(ODDS_FILE) || {};
+  try {
+    const sportKey = 'soccer_fifa_world_cup';
+    const url = `/sports/${sportKey}/odds/?regions=eu&markets=h2h&oddsFormat=decimal&apiKey=${ODDS_API_KEY}`;
+    const resp = await fetchOdds(url);
+    if (!resp || resp.error) {
+      console.log(`[${ts}] Odds (the-odds-api): error - ${resp ? resp.error : 'no response'}`);
+      return false;
+    }
+    let updated = 0;
+    (resp.data || resp).forEach(function(game) {
+      if (!game.bookmakers || !game.bookmakers[0]) return;
+      const bm = game.bookmakers[0];
+      const h2h = bm.markets && bm.markets[0];
+      if (!h2h || !h2h.outcomes) return;
+      const h = h2h.outcomes.find(o => o.name === game.home_team);
+      const a = h2h.outcomes.find(o => o.name === game.away_team);
+      const d = h2h.outcomes.find(o => o.name === 'Draw');
+      if (!h || !a || !d) return;
+      // Map to match ID by date + teams
+      const m = getMatchSchedule().find(function(x) {
+        const ht = TEAMS[x.home], at = TEAMS[x.away];
+        if (!ht || !at) return false;
+        return (ht.name === game.home_team || at.name === game.home_team) &&
+               (ht.name === game.away_team || at.name === game.away_team);
+      });
+      if (m) {
+        existing[m.id] = { h: h.price, d: d.price, a: a.price, updatedAt: ts };
+        updated++;
+      }
+    });
+    if (updated > 0) {
+      fs.writeFileSync(ODDS_FILE, JSON.stringify(existing, null, 2));
+      console.log(`[${ts}] Odds (the-odds-api): ${updated} matches written`);
+      return true;
+    }
+    console.log(`[${ts}] Odds (the-odds-api): 0 matches matched`);
+  } catch(e) { console.error(`[${ts}] Odds (the-odds-api) error:`, e.message); }
+  return false;
+}
+
+// Odds via api-sports.io
+async function updateOddsApiSports(now, ts) {
+  if (!APISPORTS_KEY) return false;
   const existing = loadJSON(ODDS_FILE) || {};
 
   // Fixture ID → match ID map (from match-details.json)
