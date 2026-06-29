@@ -1,6 +1,8 @@
 name: Update Scores
 
 on:
+  schedule:
+    - cron: '*/30 * * * *'
   push:
     branches: [main]
   workflow_dispatch:
